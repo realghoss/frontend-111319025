@@ -1500,17 +1500,25 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ==========================================
-// 13. 手機版漢堡選單控制
+// 13. 手機版漢堡選單控制 (修正版)
 // ==========================================
+
+// ★★★ 關鍵修正：必須掛載到 window，HTML onclick 才抓得到 ★★★
 window.toggleMobileMenu = function() {
+    console.log("漢堡按鈕被點擊了！"); // 測試用，打開 F12 Console 看有沒有跑出這行
     const nav = document.getElementById('main-nav');
+    
     if (nav) {
-        
+        // 切換 class (這會觸發 CSS 的 right: 0)
         nav.classList.toggle('mobile-active');
+    } else {
+        console.error("找不到 id='main-nav' 的元素！");
     }
 }
 
+// 點擊連結後自動收起
 document.addEventListener('DOMContentLoaded', () => {
+    // 確保這裡抓得到元素
     const navLinks = document.querySelectorAll('.nav-links a, .nav-links button');
     const nav = document.getElementById('main-nav');
 

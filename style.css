@@ -1261,7 +1261,7 @@ select, input {
     }
 
     .nav-links.mobile-active {
-        right: 0;
+        right: 0!important;
     }
 
     .nav-links li a {
