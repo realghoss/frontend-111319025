@@ -1,26 +1,31 @@
 ﻿<!DOCTYPE html>
 <html lang="zh-TW">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>下載與儲值 - Shadowverse WB</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Noto+Serif+TC:wght@500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Noto+Serif+TC:wght@500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link rel="stylesheet" href="style.css">
 
     <style>
         body {
             padding-top: 100px;
             text-align: center;
-            background-color: var(--bg-color); /* 確保背景色一致 */
+            background-color: var(--bg-color);
+            /* 確保背景色一致 */
         }
 
         /* 下載區塊 */
         .download-section {
             margin-bottom: 60px;
             padding: 40px;
-            background: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(0,0,0,0) 100%);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0) 100%);
             border-radius: 12px;
         }
 
@@ -53,10 +58,25 @@
             box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2);
         }
 
-        .dl-btn span { font-size: 1.5rem; }
-        .dl-text { text-align: left; }
-        .dl-text small { display: block; font-size: 0.8rem; color: #888; }
-        .dl-text strong { display: block; font-size: 1.1rem; color: var(--accent-gold); }
+        .dl-btn span {
+            font-size: 1.5rem;
+        }
+
+        .dl-text {
+            text-align: left;
+        }
+
+        .dl-text small {
+            display: block;
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        .dl-text strong {
+            display: block;
+            font-size: 1.1rem;
+            color: var(--accent-gold);
+        }
 
         /* 課金區塊 */
         .shop-section {
@@ -96,7 +116,7 @@
             font-size: 0.8rem;
             transform: rotate(45deg);
             font-weight: bold;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
         }
 
         .crystal-img {
@@ -113,9 +133,20 @@
             font-size: 2rem;
         }
 
-        .item-amount { font-size: 1.5rem; color: white; font-weight: bold; margin-bottom: 5px; }
-        .item-bonus { color: #ff6b6b; font-size: 0.9rem; margin-bottom: 15px; min-height: 1.2em; }
-        
+        .item-amount {
+            font-size: 1.5rem;
+            color: white;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .item-bonus {
+            color: #ff6b6b;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            min-height: 1.2em;
+        }
+
         .price-btn {
             width: 100%;
             padding: 10px;
@@ -134,16 +165,24 @@
         }
     </style>
 </head>
+
 <body>
     <header class="site-header nav-visible" style="position: fixed;">
         <a href="index.html" class="logo">Shadowverse WB</a>
+
+        <div class="hamburger-menu" onclick="toggleMobileMenu()">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        
         <ul class="nav-links">
             <li><a href="index.html">← 返回主站</a></li>
         </ul>
     </header>
 
     <main class="container">
-        
+
         <section class="download-section">
             <h1 style="color: var(--accent-gold); font-family: var(--font-title); font-size: 2.5rem;">
                 開始你的旅程
@@ -151,7 +190,8 @@
             <p style="color: #aaa; margin-top: 10px;">立即下載 Shadowverse: Worlds Beyond，體驗全新的卡牌對戰。</p>
 
             <div class="platform-buttons">
-                <a href="https://store.steampowered.com/app/2584990/Shadowverse_Worlds_Beyond/" target="_blank" class="dl-btn">
+                <a href="https://store.steampowered.com/app/2584990/Shadowverse_Worlds_Beyond/" target="_blank"
+                    class="dl-btn">
                     <span class="material-symbols-outlined">laptop_windows</span>
                     <div class="dl-text">
                         <small>Download on</small>
@@ -159,7 +199,8 @@
                     </div>
                 </a>
 
-                <a href="https://apps.apple.com/us/app/shadowverse-worlds-beyond/id6472019540" target="_blank" class="dl-btn">
+                <a href="https://apps.apple.com/us/app/shadowverse-worlds-beyond/id6472019540" target="_blank"
+                    class="dl-btn">
                     <span class="material-symbols-outlined">phone_iphone</span>
                     <div class="dl-text">
                         <small>Download on the</small>
@@ -178,7 +219,8 @@
         </section>
 
         <section class="shop-section">
-            <h2 style="color: white; border-left: 4px solid var(--accent-gold); padding-left: 15px; text-align: left; margin-bottom: 20px;">
+            <h2
+                style="color: white; border-left: 4px solid var(--accent-gold); padding-left: 15px; text-align: left; margin-bottom: 20px;">
                 購買闇影水晶
             </h2>
 
@@ -197,12 +239,14 @@
                     <button class="price-btn" onclick="fakeBuy()">NT$ 170</button>
                 </div>
 
-                <div class="shop-item" style="border-color: var(--accent-gold); box-shadow: 0 0 15px rgba(212,175,55,0.1);">
+                <div class="shop-item"
+                    style="border-color: var(--accent-gold); box-shadow: 0 0 15px rgba(212,175,55,0.1);">
                     <div class="badge">HOT</div>
                     <div class="crystal-img" style="transform: scale(1.3);">💎💎</div>
                     <div class="item-amount">1,200 水晶</div>
                     <div class="item-bonus">贈送 150 免費水晶</div>
-                    <button class="price-btn" style="background: var(--accent-gold); color: #000;" onclick="fakeBuy()">NT$ 670</button>
+                    <button class="price-btn" style="background: var(--accent-gold); color: #000;"
+                        onclick="fakeBuy()">NT$ 670</button>
                 </div>
 
                 <div class="shop-item">
@@ -212,7 +256,7 @@
                     <button class="price-btn" onclick="fakeBuy()">NT$ 1,290</button>
                 </div>
 
-                
+
             </div>
         </section>
 
@@ -224,4 +268,5 @@
         }
     </script>
 </body>
+
 </html>

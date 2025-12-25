@@ -1498,3 +1498,27 @@ document.addEventListener('DOMContentLoaded', () => {
         updateWeeklyView(firstWeekly, 'lootroyal');
     }
 });
+
+// ==========================================
+// 13. 手機版漢堡選單控制
+// ==========================================
+window.toggleMobileMenu = function() {
+    const nav = document.getElementById('main-nav');
+    if (nav) {
+        
+        nav.classList.toggle('mobile-active');
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const navLinks = document.querySelectorAll('.nav-links a, .nav-links button');
+    const nav = document.getElementById('main-nav');
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (nav && nav.classList.contains('mobile-active')) {
+                nav.classList.remove('mobile-active');
+            }
+        });
+    });
+});

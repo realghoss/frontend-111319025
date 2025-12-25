@@ -1,14 +1,17 @@
 ﻿<!DOCTYPE html>
 <html lang="zh-TW">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>關於我們 - Shadowverse WB</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Noto+Serif+TC:wght@500;700&display=swap" rel="stylesheet">
-    
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Noto+Serif+TC:wght@500;700&display=swap"
+        rel="stylesheet">
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    
+
     <link rel="stylesheet" href="style.css">
 
     <style>
@@ -75,7 +78,7 @@
             transform: translateY(-10px);
             background: rgba(255, 255, 255, 0.08);
             border-color: var(--accent-gold);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
 
         .profile-card:hover::before {
@@ -88,7 +91,8 @@
             height: 120px;
             border-radius: 50%;
             border: 3px solid var(--accent-gold);
-            padding: 5px; /* 內圈間距 */
+            padding: 5px;
+            /* 內圈間距 */
             margin-bottom: 20px;
         }
 
@@ -125,12 +129,13 @@
             min-height: 50px;
         }
 
-      
+
         .fb-btn {
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            background-color: #1877F2; /* Facebook 官方藍 */
+            background-color: #1877F2;
+            /* Facebook 官方藍 */
             color: white;
             text-decoration: none;
             padding: 10px 25px;
@@ -150,12 +155,19 @@
         .fb-btn i {
             font-size: 1.2rem;
         }
-
     </style>
 </head>
+
 <body>
     <header class="site-header nav-visible" style="position: fixed;">
         <a href="index.html" class="logo">Shadowverse WB</a>
+
+        <div class="hamburger-menu" onclick="toggleMobileMenu()">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        
         <ul class="nav-links">
             <li><a href="index.html">← 返回主站</a></li>
         </ul>
@@ -166,7 +178,7 @@
         <p class="page-desc">一群熱愛闇影詩章的玩家，致力於提供最優質的攻略資訊。</p>
 
         <div class="team-grid">
-            
+
             <div class="profile-card">
                 <div class="avatar-box">
                     <img src="https://ui-avatars.com/api/?name=Ghost&background=D4AF37&color=000&size=256" alt="Avatar">
@@ -177,7 +189,7 @@
                     負責網站全端開發與架構設計，<br>以及所有的卡牌分析資料<br>
                     擅長職業：財寶皇家
                 </p>
-                
+
                 <a href="https://www.facebook.com/william.fan.902/" target="_blank" class="fb-btn">
                     <i class="bi bi-facebook"></i> 連絡william fan
                 </a>
@@ -203,4 +215,5 @@
         </div>
     </main>
 </body>
+
 </html>
