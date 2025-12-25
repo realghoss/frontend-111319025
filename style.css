@@ -1,4 +1,4 @@
-/* --- 1. 全域變數 (Variables) --- */
+
 :root {
     --bg-color: #0a0a0a;
     --text-color: #e0e0e0;
@@ -10,7 +10,7 @@
     --font-body: 'Noto Serif TC', serif; 
 }
 
-/* --- 2. 重置與基礎設定 (Reset) --- */
+
 * {
     margin: 0;
     padding: 0;
@@ -24,9 +24,9 @@ body {
     line-height: 1.6;
 }
 
-/* --- 3. 導覽列 (Navbar) --- */
+
 header {
-    /* 固定在頂部 */
+
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -34,14 +34,14 @@ header {
     justify-content: space-between;
     align-items: center;
 
-    /* 尺寸 */
+ 
     width: 100%;
     height: 70px;
 
-    /* 內距 */
+  
     padding: 0 2rem;
 
-    /* 背景與邊框 */
+    
     background-color: var(--nav-bg);
     border-bottom: 2px solid var(--accent-gold-dim);
 }
@@ -84,19 +84,19 @@ header {
     color: #000 !important;
 }
 
-/* --- 4. 主要容器 (Container) --- */
+
 .container {
-    /* 尺寸 */
+ 
     width: 100%;
     max-width: 1200px;
     min-height: 80vh;
 
-    /* 版面 */
-    margin: 0 auto; /* 水平置中 */
+    
+    margin: 0 auto; 
     padding: 2rem;
 }
 
-/* --- 5. 篩選工具列 (Filter Bar) --- */
+
 .filter-bar {
     margin-bottom: 30px;
     padding: 20px;
@@ -120,29 +120,28 @@ select, input {
     font-family: var(--font-body);
 }
 
-/* --- 6. 網格系統 (Grid System) --- */
+
 .card-grid {
     display: grid;
-    /* 預設: 8欄 */
+   
     grid-template-columns: repeat(8, 1fr); 
     gap: 15px;
 }
 
-/* 響應式設計 (RWD) */
 @media (max-width: 1400px) { .card-grid { grid-template-columns: repeat(6, 1fr); } }
 @media (max-width: 1100px) { .card-grid { grid-template-columns: repeat(4, 1fr); } }
 @media (max-width: 768px)  { .card-grid { grid-template-columns: repeat(3, 1fr); } }
 @media (max-width: 480px)  { .card-grid { grid-template-columns: repeat(2, 1fr); } }
 
-/* --- 7. 卡片樣式 (Card Item) --- */
+
 .card-item {
-    /* 定位 */
+ 
     position: relative;
     
-    /* 尺寸 */
-    aspect-ratio: 3/4; /* 強制比例 */
+ 
+    aspect-ratio: 3/4; 
     
-    /* 外觀 */
+   
     background: #222;
     border: 1px solid #333;
     border-radius: 6px;
@@ -163,38 +162,37 @@ select, input {
     object-fit: cover;
 }
 
-/* --- 8. 彈窗 (Modal) --- */
+
 .modal {
-    /* 定位 */
+   
     position: fixed;
     top: 0;
     left: 0;
     z-index: 2000;
-    display: none; /* 預設隱藏 */
+    display: none; 
     align-items: center;
     justify-content: center;
 
-    /* 尺寸 */
+
     width: 100%;
     height: 100%;
 
-    /* 背景 */
+
     background-color: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(5px);
 }
 
 .modal-content {
-    /* 定位 */
+
     position: relative;
 
-    /* 尺寸 */
+
     width: 80%;
     max-width: 800px;
 
-    /* 內距 */
     padding: 30px;
 
-    /* 外觀 */
+
     background-color: #151515;
     border: 2px solid var(--accent-gold);
     border-radius: 8px;
@@ -253,9 +251,8 @@ select, input {
     font-size: 1.1rem;
 }
 
-/* --- 戰鬥數值與職業資訊 --- */
 
-/* 職業分類列 */
+
 .stat-row-class {
     font-size: 1.2rem;
     color: #bbb;
@@ -268,16 +265,16 @@ select, input {
     color: var(--accent-gold);
 }
 
-/* 戰鬥數值容器 (Flex排版) */
+
 .battle-stats {
-    display: flex;       /* 橫向排列 */
-    gap: 15px;           /* 元素間距 */
+    display: flex;      
+    gap: 15px;        
     margin-bottom: 20px;
 }
 
-/* 數值方塊 */
+
 .stat-box {
-    flex: 1;             /* 平均分配寬度 */
+    flex: 1;             
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid #333;
     border-radius: 8px;
@@ -287,14 +284,13 @@ select, input {
     flex-direction: column;
 }
 
-/* 標籤文字 (費用/攻擊/生命) */
+
 .stat-label {
     font-size: 0.8rem;
     color: #888;
     margin-bottom: 5px;
 }
 
-/* 數值本體 */
 .stat-value {
     font-size: 1.5rem;
     font-weight: bold;
@@ -302,19 +298,17 @@ select, input {
     font-family: var(--font-title);
 }
 
-/* 個別數值顏色設定 */
-#modal-atk { color: #ff6b6b; }       /* 攻擊力 */
-#modal-hp  { color: #4ecdc4; }       /* 生命值 */
-#modal-cost{ color: var(--accent-gold); } /* 費用 */
+#modal-atk { color: #ff6b6b; }     
+#modal-hp  { color: #4ecdc4; }     
+#modal-cost{ color: var(--accent-gold); }
 
-/* --- 通用工具類別 --- */
+
 
 /* 強制隱藏 */
 .hidden {
     display: none !important;
 }
 
-/* 簡單的淡入動畫 */
 .page-section {
     animation: fadeIn 0.5s ease;
 }
@@ -324,12 +318,11 @@ select, input {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* 導覽列連結激活狀態 */
+
 .nav-links a.active {
     color: var(--accent-gold);
 }
 
-/* active 下方底線效果 */
 .nav-links a.active::after {
     content: '';
     position: absolute;
@@ -341,19 +334,18 @@ select, input {
     box-shadow: 0 0 5px var(--accent-gold);
 }
 
-/* --- 歷史版本/側邊欄佈局 --- */
+
 
 .sidebar-layout {
-    display: flex;           /* 左右並排 */
-    align-items: stretch;    /* 等高 */
-    min-height: calc(100vh - 80px); /* 扣除 Header 高度 */
+    display: flex;          
+    align-items: stretch;   
+    min-height: calc(100vh - 80px); 
 }
 
-/* 側邊欄 */
 .sidebar {
     width: 250px;           
     border-right: 1px solid var(--accent-gold);
-    flex-shrink: 0;         /* 防止空間不足被壓縮 */
+    flex-shrink: 0;        
     padding-bottom: 50px;   
 }
 
@@ -383,9 +375,8 @@ select, input {
     border-left: 3px solid var(--accent-gold);
 }
 
-/* 內容區域 */
 .content-area {
-    flex-grow: 1;           /* 佔滿剩餘空間 */
+    flex-grow: 1;         
     padding: 20px;
     min-height: 100%;       
 }
@@ -403,7 +394,7 @@ select, input {
     align-items: flex-start;
 }
 
-/* 牌組列表 */
+
 .deck-list {
     flex: 1;
     display: flex;
@@ -440,7 +431,7 @@ select, input {
     color: white;
 }
 
-/* --- 職業圖示顏色設定 --- */
+
 .deck-icon.elf { 
     background: #2e7d32; 
     color: white; 
@@ -500,7 +491,7 @@ select, input {
 }
 .deck-item:hover .arrow-icon { opacity: 1; }
 
-/* 圖表區域 */
+
 .chart-box {
     width: 400px;
     background: #111;
@@ -511,9 +502,7 @@ select, input {
     top: 20px;
 }
 
-/* --- 每週主打 / 英雄區域 --- */
 
-/* 主打大圖 */
 .weekly-hero {
     position: relative;
     width: 100%;
@@ -532,13 +521,11 @@ select, input {
     font-size: 2rem;
 }
 
-/* 左右分欄 */
 .weekly-split {
     display: flex;
     gap: 30px;
 }
 
-/* 指南區塊 */
 .weekly-guide {
     flex: 1; 
     background: rgba(255, 255, 255, 0.03);
@@ -560,7 +547,7 @@ select, input {
     line-height: 1.8;
 }
 
-/* RWD: 螢幕變窄時改為直式 */
+
 @media (max-width: 900px) {
     .weekly-split {
         flex-direction: column;
@@ -571,7 +558,6 @@ select, input {
     }
 }
 
-/* --- 規則說明樣式 --- */
 
 .rules-container {
     max-width: 800px;
@@ -637,7 +623,7 @@ select, input {
     color: var(--accent-gold);
 }
 
-/* --- 純文字彈窗 (Text Modal) --- */
+
 
 .text-modal-content {
     max-width: 600px; 
@@ -648,20 +634,17 @@ select, input {
     color: #ddd;
     font-size: 1.1rem;
     line-height: 1.8;
-    max-height: 60vh; /* 內容過長時 */
-    overflow-y: auto; /* 允許滾動 */
+    max-height: 60vh; 
+    overflow-y: auto;
     padding-right: 10px; 
 }
 
-/* 彈窗標題 */
 #rule-modal-title {
     color: var(--accent-gold);
     border-bottom: 1px solid #333;
     padding-bottom: 15px;
     margin-bottom: 20px;
 }
-
-/* --- PV 影片區域設定 --- */
 
 .pv-section {
     margin-top: 50px;
@@ -671,7 +654,7 @@ select, input {
     border: 1px solid #444;
 }
 
-/* PV 網格佈局 */
+
 .pv-grid {
     display: flex;             
     flex-direction: column;    
@@ -680,7 +663,7 @@ select, input {
     width: 100%;               
 }
 
-/* 單個影片區塊 */
+
 .pv-item {
     width: 100%;               
     max-width: 900px;          
@@ -694,7 +677,7 @@ select, input {
     letter-spacing: 1px;       
 }
 
-/* 影片容器 */
+
 .video-wrapper {
     position: relative;
     width: 100%;               
@@ -720,7 +703,7 @@ select, input {
 }
 
 
-/* --- Footer 設定 --- */
+
 
 .site-footer {
     background-color: #050505; 
@@ -811,33 +794,32 @@ select, input {
     color: #000;
 }
 
-/* === 導覽列顯示控制 === */
+
 #site-header {
-    /* 轉場動畫 */
+  
     transition: transform 2s ease, opacity 2s ease;
-    
-    /* 固定定位 */
+  
     position: fixed; 
     top: 0;
     width: 100%;
     z-index: 1000;
 }
 
-/* 1. 隱藏狀態 */
+
 .nav-hidden {
     opacity: 0;
     transform: translateY(-100%); 
     pointer-events: none;
 }
 
-/* 2. 顯示狀態 */
+
 .nav-visible {
     opacity: 1;
     transform: translateY(0); 
     pointer-events: auto;
 }
 
-/* === 背景影片設定 (模擬 background-size: cover) === */
+
 .video-background {
     position: fixed;
     top: 0;
@@ -849,13 +831,13 @@ select, input {
     pointer-events: none; 
 }
 
-/* 讓 iframe 填滿背景 */
+
 .video-background iframe {
     position: absolute;
     top: 50%;
     left: 50%;
     width: 100vw;
-    height: 56.25vw; /* 16:9 */
+    height: 56.25vw; 
     min-height: 100vh;
     min-width: 177.77vh; 
     transform: translate(-50%, -50%);
@@ -863,12 +845,11 @@ select, input {
     transition: opacity 2s ease; 
 }
 
-/* 淡出效果 */
+
 .video-background.faded iframe {
     opacity: 0.3; 
 }
 
-/* === 主視覺內容 === */
 #main-hero-content {
     position: relative;
     z-index: 1; 
@@ -882,13 +863,13 @@ select, input {
     justify-content: center;
 }
 
-/* 顯示內容 Class */
+
 #main-hero-content.visible {
     opacity: 1;
     transform: translateY(0);
 }
 
-/* === 靜音按鈕 === */
+
 #mute-btn {
     position: fixed;
     bottom: 20px;
@@ -907,7 +888,7 @@ select, input {
     align-items: center;
 }
 
-/* === 音量控制器 (Sci-Fi 風格) === */
+
 #volume-control-panel {
     position: fixed;
     bottom: 30px;
@@ -919,7 +900,7 @@ select, input {
     gap: 10px;
 }
 
-/* --- 主按鈕設定 --- */
+
 #volume-btn {
     width: 50px;
     height: 50px;
@@ -938,24 +919,24 @@ select, input {
     z-index: 2;
 }
 
-/* 懸停效果 */
+
 #volume-btn:hover {
     box-shadow: 0 0 20px var(--accent-gold);
     transform: scale(1.1);
     background: #000;
 }
 
-/* 激活狀態 */
+
 #volume-control-panel.active #volume-btn {
     background: var(--accent-gold);
     color: #000;
     box-shadow: 0 0 25px var(--accent-gold);
 }
 
-/* --- 滑桿容器 --- */
+
 #slider-wrapper {
     width: 40px;
-    height: 0; /* 預設高度 0 (隱藏) */
+    height: 0; 
     opacity: 0;
     background: rgba(0, 0, 0, 0.9);
     border: 1px solid #444;
@@ -968,7 +949,7 @@ select, input {
     box-shadow: 0 4px 15px rgba(0,0,0,0.5);
 }
 
-/* 展開狀態 */
+
 #volume-control-panel.active #slider-wrapper {
     height: 140px; 
     opacity: 1;
@@ -976,9 +957,9 @@ select, input {
     margin-bottom: 5px;
 }
 
-/* --- 音量滑桿本體 --- */
+
 #volume-slider {
-    /* 旋轉為垂直滑桿 */
+    
     transform: rotate(-90deg); 
     width: 100px; 
     height: 40px; 
@@ -988,7 +969,7 @@ select, input {
     cursor: pointer;
 }
 
-/* 滑軌 */
+
 #volume-slider::-webkit-slider-runnable-track {
     width: 100%;
     height: 4px;
@@ -996,7 +977,7 @@ select, input {
     border-radius: 2px;
 }
 
-/* 滑塊 (拖曳點) */
+
 #volume-slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     height: 16px;
@@ -1012,7 +993,7 @@ select, input {
     transform: scale(1.5);
 }
 
-/* === Loading 載入畫面 === */
+
 #loader-screen {
     position: fixed;
     top: 0;
@@ -1029,7 +1010,7 @@ select, input {
     transition: opacity 0.5s ease;
 }
 
-/* 旋轉動畫 */
+
 .loader {
     width: 50px;
     height: 50px;
@@ -1047,36 +1028,34 @@ select, input {
 
 #main-hero-content {
     position: relative;
-    min-height: 100vh; /* 確保有高度撐開 */
+    min-height: 100vh; 
 }
 
 
 
 .hero-section {
     position: relative;
-    z-index: 5; /* 文字要在畫布之上 */
+    z-index: 5; 
     min-height: 400px;
     padding: 50px 0 150px 0;
 }
 
-/* 修正：原本刪除按鈕後，下方空間會空掉，我們在 HTML 的 inline-style 加了 padding-bottom */
-/* 但為了保險起見，這裡也確保 hero-section 有最小高度 */
 .hero-section {
     min-height: 400px; 
 }
 
-/* === 修正：防止內容被導覽列擋住 === */
 
-/* 針對除了首頁以外的所有功能區塊，增加頂部內距 */
+
+
 #section-cards,
 #section-history,
 #section-weekly,
 #section-rules {
-    /* 導覽列高度約 70px，我們設定 120px 讓它有足夠的呼吸空間 */
+   
     padding-top: 120px !important;
 }
 
-/* 確保 RWD 手機版時也不會跑版 (手機版導覽列若高度不同可微調) */
+
 @media (max-width: 768px) {
     #section-cards,
     #section-history,
@@ -1162,45 +1141,45 @@ select, input {
     background: #333; color: #777; box-shadow: none; cursor: not-allowed; 
 }
 
-/* === 歷史頁面：右側懸浮面板 (左右並排版) === */
 
-/* 1. 定義右側面板容器 */
+
+
 .right-panel {
-    /* 改用 flex: 2 或更多，讓它佔據比左邊列表更大的空間 */
+   
     flex: 2; 
     
-    /* 關鍵：橫向排列 (Row) */
+  
     display: flex;
     flex-direction: row; 
-    gap: 20px; /* 兩個區塊中間的縫隙 */
-    align-items: flex-start; /* 對齊頂部 */
+    gap: 20px; 
+    align-items: flex-start;
 
-    /* 黏貼設定 */
+    
     position: sticky;
     position: -webkit-sticky;
-    top: 120px; /* 避開導覽列 */
+    top: 120px; 
     
-    /* 高度設定為內容高度，不設固定高，讓內部自己撐開 */
+    
     height: fit-content; 
 }
 
-/* 2. 讓雷達圖和留言區平分寬度 */
+
 .chart-box, 
 #comments-section {
-    flex: 1; /* 各佔 50% */
-    min-width: 300px; /* 最小寬度，避免擠壓變形 */
-    margin: 0; /* 清除多餘邊距 */
+    flex: 1; 
+    min-width: 300px; 
+    margin: 0; 
     background: #111;
     z-index: 2;
 }
 
-/* 3. 修正雷達圖盒子的樣式 */
+
 .chart-box {
     position: static !important;
     border-radius: 12px;
 }
 
-/* 4. 留言區樣式優化 */
+
 #comments-section {
     border-top: none !important;
     padding: 15px;
@@ -1213,24 +1192,24 @@ select, input {
     flex-direction: column;
 }
 
-/* 5. 留言列表區域 */
+
 .comments-list {
-    flex: 1; /* 吃掉剩餘高度 */
-    overflow-y: auto; /* 只有留言列表會捲動 */
+    flex: 1; 
+    overflow-y: auto; 
     margin-bottom: 15px;
     background: rgba(0,0,0,0.3);
     border-radius: 4px;
 }
 
-/* === RWD 響應式修正 === */
-/* 當螢幕變窄 (例如筆電或平板直立) 時，右側面板變回垂直堆疊 */
+
+
 @media (max-width: 1300px) {
     .right-panel {
-        flex-direction: column; /* 變回上下排列 */
+        flex-direction: column; 
     }
 }
 
-/* 手機版：整個結構變成垂直流水帳 */
+
 @media (max-width: 900px) {
     .decks-container {
         flex-direction: column;

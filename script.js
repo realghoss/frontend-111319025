@@ -10,10 +10,6 @@ import {
     doc, setDoc, updateDoc, increment, getDoc
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-// ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼
-// 【請在此處貼上 Firebase Config】
-// ⚠️ 如果你剛才貼過真實金鑰，請確保這裡是你正確的金鑰資料
-// ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲
 
 const firebaseConfig = {
     apiKey: "AIzaSyCpnd4DLvrG1I71Bl98MvTIfEV_M6Pt3mg",
@@ -25,18 +21,18 @@ const firebaseConfig = {
     measurementId: "G-XKPCMQHLP6"
 };
 
-// 初始化 Firebase
+
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 const provider = new GoogleAuthProvider();
 
-// 全域變數：紀錄當前使用者與狀態
+
 let currentUser = null;
 let currentHistoryDeck = null;
 let currentWeeklyDeck = null;
-let unsubscribeComments = null; // 用來取消監聽留言
-let voteChart = null; // 投票圖表實例
+let unsubscribeComments = null; 
+let voteChart = null; 
 
 // ==========================================
 // 2. 使用者登入/登出邏輯 (掛載到 window)
@@ -52,44 +48,43 @@ window.toggleSignIn = () => {
     }
 };
 
-// 監聽登入狀態改變
 onAuthStateChanged(auth, (user) => {
     currentUser = user;
 
-    // 取得 UI 元件
+  
     const authBtn = document.getElementById('auth-btn');
     const userDisplay = document.getElementById('user-display');
     const commentInput = document.getElementById('comment-input');
     const sendBtn = document.getElementById('send-comment-btn');
     const voteBtn = document.getElementById('vote-btn');
 
-    // 確保元件存在才執行 (避免報錯)
+ 
     if (!authBtn) return;
 
     if (user) {
-        // 登入後狀態
+     
         authBtn.textContent = "登出";
         if (userDisplay) {
             userDisplay.textContent = `Hi, ${user.displayName}`;
             userDisplay.style.display = "inline";
         }
 
-        // 解鎖輸入框與按鈕
+ 
         if (commentInput) {
             commentInput.disabled = false;
             commentInput.placeholder = "分享你的戰術心得...";
         }
         if (sendBtn) sendBtn.disabled = false;
 
-        // 重新檢查投票狀態
+
         if (currentWeeklyDeck) checkVoteStatus(currentWeeklyDeck);
 
     } else {
-        // 登出後狀態
+     
         authBtn.textContent = "登入 / 註冊";
         if (userDisplay) userDisplay.style.display = "none";
 
-        // 鎖定功能
+     
         if (commentInput) {
             commentInput.disabled = true;
             commentInput.placeholder = "請先登入以發表留言";
@@ -109,7 +104,6 @@ function loadComments(deckName) {
     currentHistoryDeck = deckName;
     const deckNameDisplay = document.getElementById('comment-deck-name');
 
-    // ★★★ 修正 1：使用 innerHTML 解析 <br> 標籤 ★★★
     if (deckNameDisplay) deckNameDisplay.innerHTML = deckName;
 
     const list = document.getElementById('comments-list');
@@ -117,15 +111,13 @@ function loadComments(deckName) {
 
     list.innerHTML = '<p style="color:#888; padding:10px;">載入中...</p>';
 
-    // 如果之前有監聽，先取消
+   
     if (unsubscribeComments) unsubscribeComments();
 
-    // ★★★ 修正 2：移除 orderBy，改用 JS 排序 ★★★
-    // 原因：Firebase 同時用 where 和 orderBy 需要手動建立索引，容易造成新手卡在載入中。
-    // 我們先只篩選牌組，抓回來後再用程式碼排順序。
+  
     const q = query(collection(db, "comments"), where("deckName", "==", deckName));
 
-    // 啟用即時監聽
+
     unsubscribeComments = onSnapshot(q, (snapshot) => {
         list.innerHTML = "";
         if (snapshot.empty) {
@@ -133,21 +125,21 @@ function loadComments(deckName) {
             return;
         }
 
-        // 將資料轉為陣列並手動排序 (新到舊)
+    
         let commentsArray = [];
         snapshot.forEach((doc) => {
             commentsArray.push(doc.data());
         });
 
-        // 根據 timestamp 排序 (新的在前)
+    
         commentsArray.sort((a, b) => {
-            // 防止 timestamp 為 null (剛寫入時可能會有延遲)
+           
             const timeA = a.timestamp ? a.timestamp.toDate().getTime() : Date.now();
             const timeB = b.timestamp ? b.timestamp.toDate().getTime() : Date.now();
             return timeB - timeA;
         });
 
-        // 渲染畫面
+    
         commentsArray.forEach((data) => {
             const date = data.timestamp ? new Date(data.timestamp.toDate()).toLocaleString() : "剛剛";
 
@@ -163,13 +155,13 @@ function loadComments(deckName) {
             list.appendChild(row);
         });
     }, (error) => {
-        // ★★★ 修正 3：加入錯誤處理，讓你知道為什麼失敗 ★★★
+        
         console.error("載入留言失敗:", error);
         list.innerHTML = `<p style="color:#ff6b6b; padding:10px;">載入失敗: ${error.message}<br>請檢查 Console (F12)</p>`;
     });
 }
 
-// 發布留言 (掛載到 window)
+
 window.postComment = async () => {
     const input = document.getElementById('comment-input');
     const content = input.value.trim();
@@ -181,9 +173,9 @@ window.postComment = async () => {
             userId: currentUser.uid,
             userName: currentUser.displayName,
             content: content,
-            timestamp: new Date() // 使用 Client 時間方便即時顯示
+            timestamp: new Date() 
         });
-        input.value = ""; // 清空
+        input.value = ""; 
     } catch (e) {
         console.error("留言失敗", e);
         alert("留言失敗：" + e.message);
@@ -193,7 +185,7 @@ window.postComment = async () => {
 // ==========================================
 // 4. 本週熱門：投票系統 (已更新：總票數統計)
 // ==========================================
-let unsubscribeVoteChart = null; // 新增：用來管理圖表監聽器的變數
+let unsubscribeVoteChart = null;
 
 function initVoteChart() {
     const ctx = document.getElementById('voteChart');
@@ -204,12 +196,12 @@ function initVoteChart() {
     voteChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            // ★ 修改標籤：顯示總投票數
+           
             labels: ['當前牌組', '網站總投票數'],
             datasets: [{
                 label: '得票數',
-                data: [0, 0], // 初始值
-                // 設定不同顏色方便區分：金色代表當前，深灰代表總數
+                data: [0, 0], 
+                
                 backgroundColor: ['#D4AF37', '#444'],
                 borderColor: ['#D4AF37', '#666'],
                 borderWidth: 1
@@ -228,43 +220,42 @@ function loadVotes(deckKey, deckTitle) {
     const nameDisplay = document.getElementById('vote-deck-name');
     if (nameDisplay) nameDisplay.textContent = deckTitle;
 
-    // ★★★ 重點修改：監聽整個集合，而非單一文件 ★★★
-    // 這樣才能算出所有牌組的總票數
+   
     const votesCollection = collection(db, "weekly_votes");
 
-    // 如果之前有正在監聽的，先取消，避免重複執行浪費效能
+   
     if (unsubscribeVoteChart) unsubscribeVoteChart();
 
     unsubscribeVoteChart = onSnapshot(votesCollection, (snapshot) => {
         let totalVotes = 0;
         let currentDeckVotes = 0;
 
-        // 遍歷所有投票文件來計算總和
+        
         snapshot.forEach(doc => {
             const data = doc.data();
             const count = data.count || 0;
 
-            // 累加總票數
+            
             totalVotes += count;
 
-            // 如果是當前瀏覽的牌組，記錄它的票數
+            
             if (doc.id === deckKey) {
                 currentDeckVotes = count;
             }
         });
 
-        // 更新文字數字顯示
+       
         const countDisplay = document.getElementById('vote-count-display');
         if (countDisplay) countDisplay.textContent = currentDeckVotes;
 
-        // 更新圖表數據 [當前, 總數]
+       
         if (voteChart) {
             voteChart.data.datasets[0].data = [currentDeckVotes, totalVotes];
             voteChart.update();
         }
     });
 
-    // 檢查按鈕狀態 (這部分維持不變)
+  
     checkVoteStatus(deckKey);
 }
 
@@ -298,7 +289,7 @@ async function checkVoteStatus(deckKey) {
     }
 }
 
-// 執行投票 (掛載到 window)
+
 window.castVote = async () => {
     if (!currentUser || !currentWeeklyDeck) return;
 
@@ -307,10 +298,10 @@ window.castVote = async () => {
 
     try {
         await setDoc(userVoteRef, { votedAt: new Date() });
-        // merge: true 確保如果文件不存在會自動建立
+        
         await setDoc(deckRef, { count: increment(1) }, { merge: true });
 
-        // UI 會透過 onSnapshot 自動更新，這裡只需要檢查按鈕狀態
+       
         checkVoteStatus(currentWeeklyDeck);
     } catch (e) {
         console.error("投票失敗", e);
@@ -321,21 +312,21 @@ window.castVote = async () => {
 // ==========================================
 // 5. YouTube API 背景影片控制
 // ==========================================
-// 由於使用了 type="module"，原本的全域變數與函數需要手動掛載到 window
+
 
 var player;
 var isIntroDone = false;
 
-// 1. 載入 YouTube IFrame Player API 代碼
+
 var tag = document.createElement('script');
 tag.src = "https://www.youtube.com/iframe_api";
 var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-// 2. 當 API 準備好時，建立播放器 (掛載到 window)
+
 window.onYouTubeIframeAPIReady = function () {
     player = new YT.Player('player', {
-        videoId: 'vWbDEsDbXBA', // 你的影片 ID
+        videoId: 'vWbDEsDbXBA', 
         playerVars: {
             'autoplay': 0,
             'controls': 0,
@@ -367,10 +358,10 @@ function onPlayerReady(event) {
 
     player.mute();
 }
-// 確保內部調用也能抓到
+
 window.onPlayerReady = onPlayerReady;
 
-// 3. 使用者點擊 "ENTER SITE" 後觸發 (掛載到 window)
+
 window.startExperience = function () {
     document.getElementById('start-overlay').style.opacity = '0';
     setTimeout(() => {
@@ -388,7 +379,7 @@ window.startExperience = function () {
     }
 }
 
-// 4. 監控時間
+
 function checkIntroTime() {
     var checkInterval = setInterval(function () {
         if (!player || !player.getCurrentTime) return;
@@ -408,7 +399,7 @@ function checkIntroTime() {
     }, 500);
 }
 
-// 5. 狀態改變監聽
+
 function onPlayerStateChange(event) {
     var iframe = player.getIframe();
     if (event.data === YT.PlayerState.ENDED) {
@@ -426,7 +417,7 @@ function onPlayerStateChange(event) {
     }
 }
 
-// 6. 音量滑桿控制 (掛載到 window)
+
 window.toggleVolumePanel = function () {
     const panel = document.getElementById('volume-control-panel');
     panel.classList.toggle('active');
@@ -444,7 +435,6 @@ window.changeVolume = function (vol) {
     }
 }
 
-// 7. 快速靜音 (掛載到 window)
 window.toggleMute = function () {
     var slider = document.getElementById('volume-slider');
     if (player.isMuted()) {
@@ -988,7 +978,7 @@ if (cardCloseBtn) {
     });
 }
 
-// 掛載到 window
+
 window.openRuleModal = function (ruleKey) {
     const data = rulesData[ruleKey];
     if (data && ruleModal) {
@@ -998,7 +988,6 @@ window.openRuleModal = function (ruleKey) {
     }
 }
 
-// 關閉問題回報 (Firebase 擴充)
 window.openReportModal = function () {
     const reportModal = document.getElementById('report-modal');
     if (reportModal) reportModal.style.display = 'flex';
@@ -1061,7 +1050,7 @@ function initRadarChart() {
     });
 }
 
-// 掛載到 window
+
 window.showRadar = function (dataArray, deckName) {
     if (!myRadarChart) initRadarChart();
     myRadarChart.data.datasets[0].data = dataArray;
@@ -1184,7 +1173,7 @@ const weeklyDecksData = {
     },
 };
 
-// 掛載到 window
+
 window.updateWeeklyView = function (element, deckKey) {
     const data = weeklyDecksData[deckKey];
     if (!data) return;
@@ -1206,7 +1195,6 @@ window.updateWeeklyView = function (element, deckKey) {
         myWeeklyChart.update();
     }
 
-    // ★★★ Firebase 功能：呼叫投票系統 ★★★
     loadVotes(deckKey, data.title);
 }
 
@@ -1431,7 +1419,7 @@ const historyData = {
     }
 };
 
-// 掛載到 window
+
 window.switchHistoryVersion = function (element, versionKey) {
     document.querySelectorAll('#history-sidebar li').forEach(li => {
         li.classList.remove('active');
@@ -1457,7 +1445,7 @@ window.switchHistoryVersion = function (element, versionKey) {
         deckDiv.className = 'deck-item';
         deckDiv.onclick = function () {
             showRadar(deck.stats, deck.name);
-            // ★★★ Firebase 功能：切換牌組時，載入對應留言 ★★★
+            
             loadComments(deck.name);
         };
 
@@ -1481,7 +1469,7 @@ window.switchHistoryVersion = function (element, versionKey) {
 
     if (data.decks.length > 0) {
         showRadar(data.decks[0].stats, data.decks[0].name);
-        // ★★★ Firebase 功能：預設載入第一個牌組的留言 ★★★
+     
         loadComments(data.decks[0].name);
     }
 }
@@ -1495,16 +1483,16 @@ document.addEventListener('DOMContentLoaded', () => {
     renderCards();
     initRadarChart();
     initWeeklyChart();
-    // 初始化投票圖表 (Firebase)
+    
     initVoteChart();
 
-    // 歷史牌組預設版本
+   
     const firstVer = document.querySelector('#history-sidebar li');
     if (firstVer) {
         switchHistoryVersion(firstVer, 'v3');
     }
 
-    // 本週熱門預設
+  
     const firstWeekly = document.querySelector('.weekly-tier-list li');
     if (firstWeekly) {
         updateWeeklyView(firstWeekly, 'lootroyal');
